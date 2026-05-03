@@ -51,6 +51,8 @@ npm run build
 npm run preview
 ```
 
+<img width="1919" height="1007" alt="Ekran görüntüsü 2026-05-03 155834" src="https://github.com/user-attachments/assets/64a4ed00-6a6a-420b-a151-da9cc216625e" />
+
 ## Technologies
 - Vue 3 (Composition API)
 - Vite 8
