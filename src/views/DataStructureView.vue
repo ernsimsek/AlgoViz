@@ -191,6 +191,8 @@ function treeInsert() {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  min-width: 0;
+  max-width: 100%;
 }
 .page-header {
   display: flex;

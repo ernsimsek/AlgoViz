@@ -189,6 +189,8 @@ generateArray()
   display: flex;
   flex-direction: column;
   gap: 28px;
+  min-width: 0;
+  max-width: 100%;
 }
 .page-header {
   display: flex;
@@ -285,6 +287,7 @@ select:focus {
 .toolbar-actions {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 .action-btn {
   display: flex;
@@ -326,6 +329,8 @@ select:focus {
   min-height: 370px;
   display: flex;
   align-items: flex-end;
+  max-width: 100%;
+  overflow: hidden;
 }
 .bars {
   display: flex;

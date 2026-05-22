@@ -1,0 +1,160 @@
+/* Shared responsive layout for all views */
+
+@media (max-width: 768px) {
+  .page {
+    gap: 20px;
+    min-width: 0;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .algo-chip {
+    align-self: flex-start;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .toolbar-left {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 14px;
+  }
+
+  .toolbar .control {
+    width: 100%;
+  }
+
+  .toolbar .control select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .toolbar .control input[type='range'] {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mode-group {
+    width: 100%;
+  }
+
+  .mode-btns {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .mode-btn {
+    padding: 8px 6px;
+    text-align: center;
+  }
+
+  .toolbar-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .toolbar-actions .action-btn {
+    justify-content: center;
+    padding: 10px 12px;
+  }
+
+  .legend,
+  .legend-bar {
+    gap: 12px 16px;
+    padding: 12px 16px;
+  }
+
+  .viz-container {
+    padding: 16px 10px 12px;
+    min-height: 280px;
+  }
+
+  .bars {
+    height: 260px;
+  }
+
+  .bar-label {
+    font-size: 0.55rem;
+    top: -14px;
+  }
+
+  .grid-wrapper {
+    padding: 12px;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-group {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+
+  .tab {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .ops-bar {
+    width: 100%;
+  }
+
+  .ds-input {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+  }
+
+  .stack-card,
+  .stack-base {
+    width: min(220px, 100%);
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .toolbar-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .toolbar-actions .action-btn {
+    font-size: 0.75rem;
+    padding: 10px 8px;
+    gap: 4px;
+  }
+
+  .toolbar-actions .action-btn svg {
+    flex-shrink: 0;
+  }
+
+  .pathfinding-grid .cell:hover {
+    transform: none;
+  }
+
+  .tab-group {
+    grid-template-columns: 1fr 1fr;
+  }
+}

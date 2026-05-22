@@ -124,5 +124,68 @@ import { RouterLink, RouterView } from 'vue-router'
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 56px;
+    padding: 10px 16px;
+    gap: 10px;
+  }
+
+  .brand {
+    flex-shrink: 0;
+  }
+
+  .nav {
+    order: 3;
+    flex: 1 1 100%;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 4px;
+    padding-bottom: 2px;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-item {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .topbar-right {
+    margin-left: auto;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
+  .main {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-right {
+    display: none;
+  }
+
+  .brand-name {
+    font-size: 1rem;
+  }
+
+  .main {
+    padding: 16px 12px;
+  }
 }
 </style>

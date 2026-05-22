@@ -70,6 +70,29 @@ function handleCellMouseUp() {
   isMouseDown.value = false
 }
 
+function handleCellTouchStart(r, c, e) {
+  e.preventDefault()
+  isMouseDown.value = true
+  handleCellMouseDown(r, c)
+}
+
+function handleCellTouchMove(e) {
+  if (!isMouseDown.value) return
+  e.preventDefault()
+  const touch = e.touches[0]
+  const el = document.elementFromPoint(touch.clientX, touch.clientY)
+  if (!el?.classList.contains('cell')) return
+  const row = el.closest('.grid-row')
+  if (!row) return
+  const r = [...row.parentElement.children].indexOf(row)
+  const c = [...row.children].indexOf(el)
+  if (r >= 0 && c >= 0) handleCellMouseEnter(r, c)
+}
+
+function handleCellTouchEnd() {
+  isMouseDown.value = false
+}
+
 function toggleWall(r, c) {
   if ((r === startPos.value[0] && c === startPos.value[1]) ||
       (r === endPos.value[0] && c === endPos.value[1])) return
@@ -214,8 +237,17 @@ function cellClass(r, c) {
       </div>
     </div>
 
-    <div class="grid-wrapper">
-      <div class="grid">
+    <div
+      class="grid-wrapper"
+      @mouseup="handleCellMouseUp"
+      @mouseleave="handleCellMouseUp"
+      @touchend="handleCellTouchEnd"
+      @touchcancel="handleCellTouchEnd"
+    >
+      <div
+        class="grid pathfinding-grid"
+        @touchmove="handleCellTouchMove"
+      >
         <div v-for="(row, r) in grid" :key="r" class="grid-row">
           <div
             v-for="(cell, c) in row"
@@ -225,6 +257,7 @@ function cellClass(r, c) {
             @mousedown.prevent="handleCellMouseDown(r, c)"
             @mouseenter="handleCellMouseEnter(r, c)"
             @mouseup="handleCellMouseUp"
+            @touchstart="handleCellTouchStart(r, c, $event)"
           ></div>
         </div>
       </div>
@@ -245,6 +278,8 @@ function cellClass(r, c) {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  min-width: 0;
+  max-width: 100%;
 }
 .page-header {
   display: flex;
@@ -357,6 +392,7 @@ select:focus {
 .toolbar-actions {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 .action-btn {
   display: flex;
@@ -394,7 +430,10 @@ select:focus {
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 20px;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 .grid {
   display: flex;
@@ -407,9 +446,12 @@ select:focus {
   display: flex;
   gap: 2px;
 }
-.cell {
+.pathfinding-grid .cell {
   width: 22px;
   height: 22px;
+  flex-shrink: 0;
+}
+.cell {
   background: var(--bg-elevated);
   border-radius: 3px;
   cursor: pointer;
@@ -479,4 +521,22 @@ select:focus {
 .swatch.wall { background: var(--text-muted); }
 .swatch.visited { background: var(--accent); }
 .swatch.path { background: var(--cyan); }
+
+@media (max-width: 768px) {
+  .grid.pathfinding-grid {
+    width: 100%;
+  }
+
+  .pathfinding-grid .grid-row {
+    width: 100%;
+  }
+
+  .pathfinding-grid .cell {
+    flex: 1;
+    width: auto;
+    height: auto;
+    aspect-ratio: 1;
+    min-width: 0;
+  }
+}
 </style>
